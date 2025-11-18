@@ -34,7 +34,7 @@ Laptops configs will be uploaded soon...
 - Macbook Pro 2020 (T2) - has a problem with wake up after suspending. It's a wide known problem https://github.com/t2linux/T2-Debian-and-Ubuntu-Kernel/issues/53
 - There are some issues, but they are not really important for me :)
 
-### My own soulutions
+### My own solutions
 #### Keyboard layout widget
 
 It turned out that qtile's build in widget did not work properly for me. For example: I'm using rofi and two keyboard layouts 'us' and 'ru' and when I'm working with 'ru' layout and
