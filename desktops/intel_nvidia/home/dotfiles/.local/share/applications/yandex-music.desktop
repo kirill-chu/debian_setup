@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Yandex Music
+Exec=chromium --profile-directory="Default" --app="https://yandex.ru/music"
+Icon=music
+StartupWMClass=yandex-music

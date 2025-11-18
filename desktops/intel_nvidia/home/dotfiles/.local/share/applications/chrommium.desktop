@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Chromium Personal
+Comment=Chromium Personal profile
+Exec=chromium --profile-directory="Default"
+Icon=chromium
+Categories=Network;WebBrowser;
+Terminal=false
