@@ -10,7 +10,7 @@ Author: kirill-chu <nefka2006@yandex.ru>
 
 """
 
-import os
+import subprocess
 from pathlib import Path
 
 from libqtile import bar, widget
@@ -20,14 +20,9 @@ from widgets.system_keyboard_layouts import SystemKeyboardLayout
 
 DATE_FORMAT = "%d-%m-%Y %a %H:%M"
 
-home = os.path.expanduser("~")
+home = Path.home()
 icon_path = Path(home, ".local/share/icons/hicolor/48x48/apps")
 
-# def yandex_music(qtile):
-#     """Launch yandex music."""
-# 
-#     qtile.cmd_spawn("chromium -app='https://yandex.ru/music' --profile-directory='Default'")
- 
 def create_primary_bar():
     """The panel for main monitor."""
 
@@ -43,6 +38,10 @@ def create_primary_bar():
         widget.WindowName(),
         widget.LaunchBar(
             progs=[(f"{icon_path}/yandex_music.png","chromium --profile-directory='Default' --app='https://yandex.ru/music'", "Yandex Music")]
+        ),
+        widget.Sep(
+            linewidth=5,
+            foreground = "#000000",
         ),
         SystemKeyboardLayout(
             display_map={'us': 'EN', 'ru': 'RU'},
@@ -60,12 +59,9 @@ def create_primary_bar():
             step=5,
             volume_app="pavucontrol"
         ),
-        widget.TextBox(
-            text = '|',
-            font = "Ubuntu Mono",
-            foreground = "#44475a",
-            padding = 2,
-            fontsize = 14
+        widget.Sep(
+            linewidth=5,
+            foreground = "#000000",
         ),
         widget.Systray(),
         widget.Clock(format=DATE_FORMAT),
@@ -84,22 +80,12 @@ def create_secondary_bar():
             other_screen_border='#44475a',
         ),
         widget.WindowName(),
-        widget.TextBox(
-            text = '|',
-            font = "Ubuntu Mono",
-            foreground = "#44475a",
-            padding = 2,
-            fontsize = 14
-        ),
         widget.LaunchBar(
             progs=[(f"{icon_path}/yandex_music.png","chromium --profile-directory='Default' --app='https://yandex.ru/music'", "Yandex Music")]
         ),
-        widget.TextBox(
-            text = '|',
-            font = "Ubuntu Mono",
-            foreground = "#44475a",
-            padding = 2,
-            fontsize = 14
+        widget.Sep(
+            linewidth=5,
+            foreground = "#000000",
         ),
         SystemKeyboardLayout(
             display_map={'us': 'EN', 'ru': 'RU'},
@@ -111,6 +97,10 @@ def create_secondary_bar():
             foreground = "#44475a",
             padding = 2,
             fontsize = 14
+        ),
+        widget.Sep(
+            linewidth=5,
+            foreground = "#000000",
         ),
         widget.Clock(format=DATE_FORMAT),
     ], 24)

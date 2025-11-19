@@ -78,22 +78,15 @@ def patch_qtile_bug():
 # Apply
 patch_qtile_bug()
 
-# For two monitors
-create_primary_bar()
-create_secondary_bar()
-setup_screens()
-configure_monitors()
-
 @hook.subscribe.startup_once
 def autostart_once():
     home = os.path.expanduser("~")
     subprocess.run(os.path.join(home, ".config", "qtile", "autostart.sh"))
 
-# @hook.subscribe.startup
-# def startup():
-#     """Startup func."""
-#     configure_monitors()
-#     subprocess.run(["setxkbmap", "-layout", "us,ru", "-option", "grp:win_space_toggle"])
+@hook.subscribe.startup
+def startup():
+    """Startup func."""
+    configure_monitors()
 
 @hook.subscribe.screen_change
 def on_screen_change(event):
@@ -108,15 +101,6 @@ def on_screen_change(event):
 # def after_screens_reconfigured():
 #     """Callback after automatic reconfiguration screens Qtile."""
 #     pass
-
-# def yandex_music(qtile):
-#     """Launch yandex music."""
-# 
-#     qtile.cmd_spawn("chromium -app='https://yandex.ru/music' --profile-directory='Default'")
-#     qtile.current_screen.set_group(qtile.groups_map["mm"])
-
-
-
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -186,7 +170,7 @@ keys = [
     Key([mod, "control"], 39, lazy.spawn(f"{scripts_dir}/rofi_vm_launcher.sh"), desc="Start rofi menu (mod+ctrl+s)"),
 
     # Connect to specify VM
-    Key([mod, "control"], 58, lazy.spawn(f"{scripts_dir}/rofi_rdp_launcher.sh"), desc="Start rofi menu (mod+ctrl+m)"),
+    Key([mod], 40, lazy.spawn(f"{str(scripts_dir)}/rdp_connector.py"), desc="Run xfreerdp3 connect menu, (mod+d)"),
 
 ]
 
