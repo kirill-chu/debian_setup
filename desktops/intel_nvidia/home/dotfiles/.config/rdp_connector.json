@@ -1,0 +1,16 @@
+[
+{
+    "connection_name": "some_project\\machine_name",
+    "username": "username",
+    "password": null,
+    "ip_address": "ip_address",
+    "params": "-grab-keyboard /dynamic-resolution /cert:ignore"
+},
+{
+    "connection_name": "an_old\\windows_machine",
+    "username": "contoso\\username",
+    "password": null,
+    "ip_address": "ip_address",
+    "params": "-grab-keyboard /f /tls:seclevel:0 /cert:ignore"
+}
+]
