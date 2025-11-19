@@ -1,0 +1,16 @@
+configuration {
+    modi: "window,drun,ssh,combi";
+    font: "hack 10";
+    combi-modi: "window,drun,ssh";
+    kb-select-1: "Super+1";
+    kb-select-2: "";
+    kb-select-3: "";
+    kb-select-4: "";
+    kb-select-5: "";
+    kb-select-6: "";
+    kb-select-7: "";
+    kb-select-8: "";
+    kb-select-9: "";
+    kb-select-10: "";
+}
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"

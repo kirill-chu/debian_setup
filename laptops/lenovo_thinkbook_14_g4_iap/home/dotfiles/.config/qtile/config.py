@@ -30,27 +30,22 @@ import subprocess
 from pathlib import Path
 
 import libqtile.resources
-from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile import layout, qtile, hook
+from libqtile.config import Click, Drag, Group, Key, Match
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
 from libqtile.utils import guess_terminal
 from libqtile.widget import backlight
 
 # from widgets.system_keyboard_layouts import SystemKeyboardLayout
-from custom_utils.screens import (
-    create_primary_bar, create_secondary_bar, configure_monitors,
-    setup_screens
-)
+from custom_utils.screens import configure_monitors, setup_screens
 
-# DATE_FORMAT = "%d-%m-%Y %a %H:%M"
 mod = "mod4"
 terminal = guess_terminal()
 home = Path.home()
-qtile_config = Path(home, "/.config/qtile")
-scripts_dir = Path(qtile_config, "/scripts")
+qtile_config = Path(home, ".config/qtile")
+scripts_dir = Path(qtile_config, "scripts")
 autostart = Path(qtile_config, "autostart.sh")
-reconfigure_screens = True
 
 os.environ["QT_QPA_PLATFORMTHEME"] = "qt6ct"
 
@@ -78,22 +73,15 @@ def patch_qtile_bug():
 # Apply
 patch_qtile_bug()
 
-# For two monitors
-create_primary_bar()
-create_secondary_bar()
-setup_screens()
-configure_monitors()
-
 @hook.subscribe.startup_once
 def autostart_once():
     home = os.path.expanduser("~")
     subprocess.run(os.path.join(home, ".config", "qtile", "autostart.sh"))
 
-# @hook.subscribe.startup
-# def startup():
-#     """Startup func."""
-#     configure_monitors()
-#     subprocess.run(["setxkbmap", "-layout", "us,ru", "-option", "grp:win_space_toggle"])
+@hook.subscribe.startup
+def startup():
+    """Startup func."""
+    configure_monitors()
 
 @hook.subscribe.screen_change
 def on_screen_change(event):
@@ -102,20 +90,12 @@ def on_screen_change(event):
     configure_monitors()
     import time
     time.sleep(1)
-    qtile.reconfigure_screens()
+    qtile.cmd_reconfigure_screens()
 
-# @hook.subscribe.screens_reconfigured
-# def after_screens_reconfigured():
-#     """Callback after automatic reconfiguration screens Qtile."""
-#     pass
-
-# def yandex_music(qtile):
-#     """Launch yandex music."""
-# 
-#     qtile.cmd_spawn("chromium -app='https://yandex.ru/music' --profile-directory='Default'")
-#     qtile.current_screen.set_group(qtile.groups_map["mm"])
-
-
+@hook.subscribe.screens_reconfigured
+def after_screens_reconfigured():
+    """Callback after automatic reconfiguration screens Qtile."""
+    pass
 
 
 keys = [
@@ -185,7 +165,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # Start VMs
-    Key([mod, "control"], 39, lazy.spawn(f"{scripts_dir}/rofi_vm_launcher.sh"), desc="Start rofi menu (mod+ctrl+s)"),
+    Key([mod, "control"], 39, lazy.spawn(f"{scripts_dir}/rofi_vm_launcher.sh"), desc="Start rofi menu (mod+csstrl+s)"),
 
     # Connect to ... via rdp
     Key([mod], 40, lazy.spawn(f"{str(scripts_dir)}/rdp_connector.py"), desc="Run xfreerdp3 connect menu, (mod+d)"),
@@ -273,7 +253,7 @@ extension_defaults = widget_defaults.copy()
 
 logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
 
-screens = setup_screens()   
+screens = setup_screens()
 
 # Drag floating layouts.
 mouse = [
