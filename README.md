@@ -7,10 +7,14 @@ My setup is:
 - Qtile
 - Picom
 - Rofi
-- Light-locker
+- alacritty
+- light-locker
 - Blueman-applet
 - nm-applet
 - feh
+- flameshot
+- setxkbmap
+- xset
 
 This setup has not been completed yet.
 
@@ -23,11 +27,9 @@ It contains only one config for my old desktop PC. It's intel based system with 
 
 #### Laptops
 It contains three configs for:
-- MacBook Air 2017 (intel)
-- MacBook Pro 2020 (T2, intel)
+- MacBook Air 2017 (intel) - soon...
+- MacBook Pro 2020 (T2, intel) - soon...
 - Lenovo ThinkBook 14 G4 IAP
-
-Laptops configs will be uploaded soon...
 
 ### Known issues
 - Auto suspend. I don't want to use gnome, kde, xfce4 power managers. I have not found yet a solution for integrating qtile and logind.
