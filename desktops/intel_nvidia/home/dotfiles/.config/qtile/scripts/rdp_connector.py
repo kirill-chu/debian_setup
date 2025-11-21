@@ -102,7 +102,7 @@ def check_connection_status(
     
     exit_code = process.wait()
 
-    if exit_code == 0 or exit_code == 12:
+    if exit_code == 0 or exit_code == 1 or exit_code == 12:
         NonificationManager.send("closed", f"{connection_name} - {ip_address}")
     elif exit_code == 141:
         NonificationManager.send("failed", f"{connection_name} - {ip_address}")
