@@ -156,20 +156,17 @@ keys = [
     # Tools
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], 27, lazy.spawn("rofi -show drun -show-icons"), desc="Spawn a dmenu (mod+r)"),
-
     Key([mod], 43, lazy.spawn("alacritty -e htop"), desc="Launch htop (mod+h)"),
     Key([mod], 46, lazy.spawn("loginctl lock-session"), desc="Locking you screen (mod+l)"),
+    Key([mod, "shift"], 42, lazy.spawn("flameshot gui"), desc="Take a screenshot (mod+sift+g)"),
+    # Start VMs
+    Key([mod, "control"], 39, lazy.spawn(f"{scripts_dir}/rofi_vm_launcher.sh"), desc="Start rofi menu (mod+csstrl+s)"),
+    # Connect to ... via rdp
+    Key([mod], 40, lazy.spawn(f"{str(scripts_dir)}/rdp_connector.py"), desc="Run xfreerdp3 connect menu, (mod+d)"),
 
     # Qtile management
     Key([mod, "control"], 27, lazy.reload_config(), desc="Reload the config (mod+ctrl+r)"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-
-    # Start VMs
-    Key([mod, "control"], 39, lazy.spawn(f"{scripts_dir}/rofi_vm_launcher.sh"), desc="Start rofi menu (mod+csstrl+s)"),
-
-    # Connect to ... via rdp
-    Key([mod], 40, lazy.spawn(f"{str(scripts_dir)}/rdp_connector.py"), desc="Run xfreerdp3 connect menu, (mod+d)"),
-
 ]
 
 # Add key bindings to switch VTs in Wayland.

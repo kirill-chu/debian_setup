@@ -151,7 +151,7 @@ def create_secondary_bar():
         ),
         widget.Volume(
             background="#44475a",
-            fmt='🔊{}',
+            fmt=' {}',
             step=5,
             volume_app="pavucontrol"
         ),
